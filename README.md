@@ -2,7 +2,7 @@
 
 > **Automatic translation file generator for JavaScript/TypeScript projects**
 
-[![npm version](https://img.shields.io/npm/v/translatte.svg)](https://www.npmjs.com/package/translatte)
+[![npm version](https://img.shields.io/npm/v/@marbulinek/translatte.svg)](https://www.npmjs.com/package/@marbulinek/translatte)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/translatte.svg)](https://nodejs.org)
 
@@ -31,12 +31,12 @@ TransLatté is a powerful CLI tool that automatically generates translation JSON
 
 ### Global Installation
 ```bash
-npm install -g translatte
+npm install -g @marbulinek/translatte
 ```
 
 ### Local Installation (Recommended for projects)
 ```bash
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 ```
 
 ## 🚀 Quick Start
@@ -531,7 +531,7 @@ If translations fail:
 ## 🔗 Links
 
 - **GitHub**: [https://github.com/Marbulinek/TransLatte](https://github.com/Marbulinek/TransLatte)
-- **npm**: [https://www.npmjs.com/package/translatte](https://www.npmjs.com/package/translatte)
+- **npm**: [https://www.npmjs.com/package/@marbulinek/translatte](https://www.npmjs.com/package/@marbulinek/translatte)
 - **Issues**: [https://github.com/Marbulinek/TransLatte/issues](https://github.com/Marbulinek/TransLatte/issues)
 
 ---

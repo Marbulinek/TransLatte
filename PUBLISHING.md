@@ -71,11 +71,11 @@ npm publish --access public
 
 ### 6. Verify Publication
 
-Visit: `https://www.npmjs.com/package/translatte`
+Visit: `https://www.npmjs.com/package/@marbulinek/translatte`
 
 Or install it:
 ```bash
-npm install -g translatte
+npm install -g @marbulinek/translatte
 translatte --help
 ```
 
@@ -158,8 +158,8 @@ Update `package.json` for better discoverability:
 ### 3. Add Badges to README
 
 ```markdown
-[![npm version](https://badge.fury.io/js/translatte.svg)](https://www.npmjs.com/package/translatte)
-[![downloads](https://img.shields.io/npm/dm/translatte.svg)](https://www.npmjs.com/package/translatte)
+[![npm version](https://badge.fury.io/js/translatte.svg)](https://www.npmjs.com/package/@marbulinek/translatte)
+[![downloads](https://img.shields.io/npm/dm/translatte.svg)](https://www.npmjs.com/package/@marbulinek/translatte)
 [![license](https://img.shields.io/npm/l/translatte.svg)](https://github.com/yourusername/translatte/blob/main/LICENSE)
 ```
 
@@ -248,7 +248,7 @@ For CI/CD, create an automation token:
 ### 1. Test Installation
 
 ```bash
-npm install -g translatte
+npm install -g @marbulinek/translatte
 translatte init
 translatte generate --help
 ```

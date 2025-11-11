@@ -7,7 +7,7 @@ Get started with TransLatté in your JavaScript/TypeScript project in just 5 min
 ## Installation
 
 ```bash
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 ```
 
 ## Step 1: Initialize

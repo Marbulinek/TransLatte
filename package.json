@@ -1,5 +1,5 @@
 {
-  "name": "translatte",
+  "name": "@marbulinek/translatte",
   "version": "1.1.0",
   "description": "Automated translation generator for JavaScript/TypeScript projects (Angular, React, Vue) using Lingva Translate API",
   "main": "dist/index.js",

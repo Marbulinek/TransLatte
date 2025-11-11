@@ -7,7 +7,7 @@
 mkdir my-angular-app
 cd my-angular-app
 npm init -y
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 ```
 
 ### 2. Create configuration
@@ -44,7 +44,7 @@ npx translatte generate
 
 ### 1. Install TransLatté and ngx-translate
 ```bash
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 npm install @ngx-translate/core @ngx-translate/http-loader
 ```
 

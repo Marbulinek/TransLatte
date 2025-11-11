@@ -140,7 +140,7 @@ npm publish --access public
 ### 4. After Publishing
 ```bash
 # Test installation
-npm install -g translatte
+npm install -g @marbulinek/translatte
 translatte --help
 
 # Or with scoped name:
@@ -162,7 +162,7 @@ npm test          # Test the CLI tool
 ### Quick Start
 ```bash
 # Install globally
-npm install -g translatte
+npm install -g @marbulinek/translatte
 
 # Initialize config
 translatte init
@@ -174,7 +174,7 @@ translatte generate
 ### In Angular Project
 ```bash
 # Install as dev dependency
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 
 # Add to package.json
 {

@@ -255,7 +255,7 @@ If you need to disable this feature (not recommended):
 **Solution**: This is fixed in v1.1.0+. Update to the latest version:
 
 ```bash
-npm install translatte@latest
+npm install @marbulinek/translatte@latest
 ```
 
 ## Testing Placeholder Preservation

@@ -104,7 +104,7 @@ TransLatté automatically detects which format you're using.
 
 ```bash
 # Install
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 
 # Initialize with multi-module support
 npx translatte init --multiple
@@ -184,7 +184,7 @@ Future enhancements planned:
 No breaking changes! Simply update:
 
 ```bash
-npm install translatte@latest
+npm install @marbulinek/translatte@latest
 ```
 
 Your existing configuration will continue to work. To use multi-module features:

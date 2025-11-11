@@ -108,7 +108,7 @@ After each release, update `CHANGELOG.md` with:
 
 The current version is always shown in:
 - `package.json` → `version` field
-- npm registry: https://www.npmjs.com/package/translatte
+- npm registry: https://www.npmjs.com/package/@marbulinek/translatte
 - GitHub tags: https://github.com/Marbulinek/TransLatte/tags
 
 ## Rollback
@@ -117,7 +117,7 @@ If a release has issues:
 
 1. **Unpublish from npm** (within 72 hours):
    ```bash
-   npm unpublish translatte@1.1.1
+   npm unpublish @marbulinek/translatte@1.1.1
    ```
 
 2. **Revert the version commit**:
@@ -140,4 +140,4 @@ If a release has issues:
 4. ✅ Only push to master when ready to release
 5. ✅ Update CHANGELOG.md after each release
 6. ✅ Use `[skip ci]` for documentation-only changes
-7. ✅ Test the package after publish: `npm install translatte@latest`
+7. ✅ Test the package after publish: `npm install @marbulinek/translatte@latest`

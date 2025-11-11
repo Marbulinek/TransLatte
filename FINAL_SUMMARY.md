@@ -121,9 +121,9 @@ npm publish
 
 **After publishing, users can install with:**
 ```bash
-npm install -g translatte
+npm install -g @marbulinek/translatte
 # or
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 ```
 
 ### Option 2: Use Locally
@@ -162,7 +162,7 @@ npm install git+https://github.com/yourusername/translatte.git
 ### Basic Usage
 ```bash
 # Install
-npm install --save-dev translatte
+npm install --save-dev @marbulinek/translatte
 
 # Initialize
 npx translatte init
@@ -370,7 +370,7 @@ npm login
 npm publish
 
 # 3. Test
-npm install -g translatte
+npm install -g @marbulinek/translatte
 translatte --help
 ```
 

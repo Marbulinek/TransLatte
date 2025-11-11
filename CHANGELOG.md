@@ -141,7 +141,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ```bash
 npm update translatte
 # or
-npm install -g translatte@latest
+npm install -g @marbulinek/translatte@latest
 ```
 
 ### For Contributors
