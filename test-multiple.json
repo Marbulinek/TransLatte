@@ -1,0 +1,7 @@
+{
+  "ANGULAR": "Hello {{name}}!",
+  "CURLY": "Welcome {user}",
+  "PERCENT": "Save %discount% today",
+  "DOLLAR": "Price: $amount$",
+  "TEMPLATE": "User ${id} logged in"
+}

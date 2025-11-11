@@ -1,0 +1,9 @@
+{
+  "sourceLanguage": "en",
+  "targetLanguages": ["es", "fr", "de", "it", "pt", "ja", "zh"],
+  "inputFile": "./src/assets/i18n/en.json",
+  "outputDir": "./src/assets/i18n",
+  "lingvaInstance": "https://lingva.ml/api/v1",
+  "preserveInterpolation": true,
+  "interpolationPattern": "\\{\\{[^}]+\\}\\}|\\{[^}]+\\}|%[^%]+%|\\$[^$]+\\$|\\$\\{[^}]+\\}"
+}

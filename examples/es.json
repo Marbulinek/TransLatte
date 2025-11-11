@@ -1,0 +1,18 @@
+{
+  "GREETINGS": {
+    "HELLO": "¡Hola{{name}}!",
+    "WELCOME": "Bienvenido de nuevo,{username}",
+    "GOOD_MORNING": "¡Buenos días,${user}!"
+  },
+  "MESSAGES": {
+    "ITEMS_COUNT": "Tienes{count}artículos en tu carrito",
+    "PRICE": "Precio total:{{currency}}{{amount}}",
+    "DISCOUNT": "Ahorra%discount%en tu compra",
+    "USER_INFO": "El usuario${firstName} ${lastName}inició sesión"
+  },
+  "NOTIFICATIONS": {
+    "NEW_MESSAGE": "Tienes{{count}}mensajes nuevos",
+    "EXPIRE_SOON": "Su suscripción vence en{days}días",
+    "POINTS_EARNED": "¡Felicidades! Obtuviste%points%puntos"
+  }
+}

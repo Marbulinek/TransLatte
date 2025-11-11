@@ -1,0 +1,17 @@
+{
+  "DASHBOARD": {
+    "TITLE": "Tableau de bord",
+    "WELCOME": "Content de te revoir!",
+    "STATS": {
+      "USERS": "Nombre total d'utilisateurs",
+      "REVENUE": "Revenu",
+      "ORDERS": "Ordres",
+      "GROWTH": "Croissance"
+    },
+    "ACTIONS": {
+      "VIEW_REPORTS": "Afficher les rapports",
+      "EXPORT_DATA": "Exporter des données",
+      "SETTINGS": "Paramètres"
+    }
+  }
+}

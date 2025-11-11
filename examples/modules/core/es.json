@@ -1,0 +1,17 @@
+{
+  "CORE": {
+    "APP_NAME": "Mi solicitud",
+    "NAVIGATION": {
+      "HOME": "Hogar",
+      "ABOUT": "Acerca de",
+      "CONTACT": "Contacto"
+    },
+    "COMMON": {
+      "SAVE": "Ahorrar",
+      "CANCEL": "Cancelar",
+      "DELETE": "Borrar",
+      "EDIT": "Editar",
+      "LOADING": "Cargando..."
+    }
+  }
+}

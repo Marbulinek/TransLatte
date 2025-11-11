@@ -1,0 +1,17 @@
+{
+  "DASHBOARD": {
+    "TITLE": "Dashboard",
+    "WELCOME": "Welcome back!",
+    "STATS": {
+      "USERS": "Total Users",
+      "REVENUE": "Revenue",
+      "ORDERS": "Orders",
+      "GROWTH": "Growth"
+    },
+    "ACTIONS": {
+      "VIEW_REPORTS": "View Reports",
+      "EXPORT_DATA": "Export Data",
+      "SETTINGS": "Settings"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "translatte",
+  "version": "1.1.0",
+  "description": "Automated translation generator for JavaScript/TypeScript projects (Angular, React, Vue) using Lingva Translate API",
+  "main": "dist/index.js",
+  "bin": {
+    "translatte": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "echo 'No linter configured yet'",
+    "preversion": "npm test && npm run build",
+    "version": "git add -A",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "translation",
+    "i18n",
+    "internationalization",
+    "angular",
+    "react",
+    "vue",
+    "ngx-translate",
+    "react-i18next",
+    "vue-i18n",
+    "lingva",
+    "translate",
+    "localization",
+    "l10n",
+    "json",
+    "typescript"
+  ],
+  "author": "Lukas Caniga",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.10.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marbulinek/TransLatte.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Marbulinek/TransLatte/issues"
+  },
+  "homepage": "https://github.com/Marbulinek/TransLatte#readme"
+}

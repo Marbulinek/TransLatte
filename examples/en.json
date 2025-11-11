@@ -1,0 +1,25 @@
+{
+  "WELCOME": {
+    "TITLE": "Welcome to our application",
+    "DESCRIPTION": "This is a sample translation file for ngx-translate"
+  },
+  "MENU": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "CONTACT": "Contact",
+    "SETTINGS": "Settings"
+  },
+  "BUTTONS": {
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "SUBMIT": "Submit"
+  },
+  "MESSAGES": {
+    "SUCCESS": "Operation completed successfully",
+    "ERROR": "An error occurred",
+    "LOADING": "Loading, please wait...",
+    "NO_DATA": "No data available"
+  }
+}

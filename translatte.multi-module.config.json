@@ -1,0 +1,21 @@
+{
+  "sourceLanguage": "en",
+  "targetLanguages": ["es", "fr"],
+  "sources": [
+    {
+      "name": "Core Module",
+      "inputFile": "./examples/modules/core/en.json",
+      "outputDir": "./examples/modules/core"
+    },
+    {
+      "name": "Auth Module",
+      "inputFile": "./examples/modules/auth/en.json",
+      "outputDir": "./examples/modules/auth"
+    },
+    {
+      "name": "Dashboard Module",
+      "inputFile": "./examples/modules/dashboard/en.json",
+      "outputDir": "./examples/modules/dashboard"
+    }
+  ]
+}

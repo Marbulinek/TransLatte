@@ -1,0 +1,27 @@
+{
+  "sourceLanguage": "en",
+  "targetLanguages": [
+    "es",
+    "fr",
+    "de",
+    "it"
+  ],
+  "delay": 500,
+  "sources": [
+    {
+      "name": "Core Module",
+      "inputFile": "./src/assets/i18n/en.json",
+      "outputDir": "./src/assets/i18n"
+    },
+    {
+      "name": "Auth Module",
+      "inputFile": "./src/app/auth/i18n/en.json",
+      "outputDir": "./src/app/auth/i18n"
+    },
+    {
+      "name": "Dashboard Module",
+      "inputFile": "./src/app/dashboard/i18n/en.json",
+      "outputDir": "./src/app/dashboard/i18n"
+    }
+  ]
+}

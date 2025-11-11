@@ -1,0 +1,19 @@
+{
+  "AUTH": {
+    "LOGIN": {
+      "TITLE": "Se connecter",
+      "EMAIL": "Adresse email",
+      "PASSWORD": "Mot de passe",
+      "BUTTON": "Se connecter",
+      "FORGOT": "Mot de passe oublié ?"
+    },
+    "REGISTER": {
+      "TITLE": "Créer un compte",
+      "BUTTON": "Registre"
+    },
+    "ERRORS": {
+      "INVALID_CREDENTIALS": "Email ou mot de passe invalide",
+      "EMAIL_EXISTS": "Email déjà enregistré"
+    }
+  }
+}

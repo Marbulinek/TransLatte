@@ -1,0 +1,17 @@
+{
+  "CORE": {
+    "APP_NAME": "Ma candidature",
+    "NAVIGATION": {
+      "HOME": "Maison",
+      "ABOUT": "À propos",
+      "CONTACT": "Contact"
+    },
+    "COMMON": {
+      "SAVE": "Sauvegarder",
+      "CANCEL": "Annuler",
+      "DELETE": "Supprimer",
+      "EDIT": "Modifier",
+      "LOADING": "Chargement..."
+    }
+  }
+}

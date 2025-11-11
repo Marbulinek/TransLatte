@@ -1,0 +1,18 @@
+{
+  "GREETINGS": {
+    "HELLO": "Hello {{name}}!",
+    "WELCOME": "Welcome back, {username}",
+    "GOOD_MORNING": "Good morning, ${user}!"
+  },
+  "MESSAGES": {
+    "ITEMS_COUNT": "You have {count} items in your cart",
+    "PRICE": "Total price: {{currency}}{{amount}}",
+    "DISCOUNT": "Save %discount% on your purchase",
+    "USER_INFO": "User ${firstName} ${lastName} logged in"
+  },
+  "NOTIFICATIONS": {
+    "NEW_MESSAGE": "You have {{count}} new message(s)",
+    "EXPIRE_SOON": "Your subscription expires in {days} days",
+    "POINTS_EARNED": "Congratulations! You earned %points% points"
+  }
+}

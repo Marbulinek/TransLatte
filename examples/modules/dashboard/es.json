@@ -1,0 +1,17 @@
+{
+  "DASHBOARD": {
+    "TITLE": "Panel",
+    "WELCOME": "¡Bienvenido de nuevo!",
+    "STATS": {
+      "USERS": "Usuarios totales",
+      "REVENUE": "Ganancia",
+      "ORDERS": "Órdenes",
+      "GROWTH": "Crecimiento"
+    },
+    "ACTIONS": {
+      "VIEW_REPORTS": "Ver informes",
+      "EXPORT_DATA": "Exportar datos",
+      "SETTINGS": "Ajustes"
+    }
+  }
+}

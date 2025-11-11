@@ -1,0 +1,17 @@
+{
+  "CORE": {
+    "APP_NAME": "My Application",
+    "NAVIGATION": {
+      "HOME": "Home",
+      "ABOUT": "About",
+      "CONTACT": "Contact"
+    },
+    "COMMON": {
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "DELETE": "Delete",
+      "EDIT": "Edit",
+      "LOADING": "Loading..."
+    }
+  }
+}
