@@ -33,7 +33,7 @@ describe('Translator (parallel and delay logic)', () => {
     };
     const translator = new Translator(config);
     // Mock delayedTranslation to instantly resolve
-    (translator as any).delayedTranslation = jest.fn((source, lang, delay) => Promise.resolve({ language: lang, translations: {}, success: true }));
+    (translator as any).delayedTranslation = jest.fn((source, lang) => Promise.resolve({ language: lang, translations: {}, success: true }));
     const results = await translator.translateSource({ inputFile, outputDir, name: 'Test' });
     expect(results.length).toBe(3);
     expect(results.every(r => r.success)).toBe(true);
