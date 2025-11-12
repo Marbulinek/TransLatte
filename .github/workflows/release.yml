@@ -42,11 +42,11 @@ jobs:
         if [ -z "$LAST_TAG" ]; then
           COMMITS=$(git log --pretty=%B)
         else
-          COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=%B)
+          COMMITS=$(git log "${LAST_TAG}"..HEAD --pretty=%B)
         fi
         
         # Check for breaking changes or major version indicators
-        if echo "$COMMITS" | grep -qiE "(BREAKING CHANGE|major:)"; then
+        if echo "$COMMITS" | grep -qiE "(BREAKING CHANGE|major:|[a-z]+!:)"; then
           echo "type=major" >> $GITHUB_OUTPUT
           echo "Detected MAJOR version bump (breaking changes)"
         # Check for features
@@ -63,7 +63,10 @@ jobs:
       id: version_bump
       run: |
         NEW_VERSION=$(npm version ${{ steps.bump_type.outputs.type }} -m "chore(release): bump version to %s [skip ci]" --no-git-tag-version)
+        # Strip 'v' prefix for package version
+        PACKAGE_VERSION=${NEW_VERSION#v}
         echo "new_version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+        echo "package_version=${PACKAGE_VERSION}" >> $GITHUB_OUTPUT
         git add package.json package-lock.json
         git commit -m "chore(release): bump version to ${NEW_VERSION} [skip ci]"
         git tag -a "${NEW_VERSION}" -m "Release ${NEW_VERSION}"
@@ -97,7 +100,7 @@ jobs:
           
           ### Installation
           ```bash
-          npm install @marbulinek/translatte@${{ steps.version_bump.outputs.new_version }}
+          npm install @marbulinek/translatte@${{ steps.version_bump.outputs.package_version }}
           ```
         draft: false
         prerelease: false
