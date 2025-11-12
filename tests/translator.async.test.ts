@@ -33,9 +33,14 @@ describe('Translator (async and legacy methods)', () => {
     };
     const translator = new Translator(config);
     // Mock lingvaService.translateObject to avoid real API call
-    (translator as any).lingvaService.translateObject = jest.fn().mockResolvedValue({ HELLO: 'Hola' });
+    (translator as any).lingvaService.translateObject = jest
+      .fn()
+      .mockResolvedValue({ HELLO: 'Hola' });
     (translator as any).saveTranslation = jest.fn();
-    const result = await translator.translateSourceToLanguage({ inputFile, outputDir, name: 'Test' }, 'es');
+    const result = await translator.translateSourceToLanguage(
+      { inputFile, outputDir, name: 'Test' },
+      'es',
+    );
     expect(result.success).toBe(true);
     expect(result.language).toBe('es');
     expect(result.translations).toEqual({ HELLO: 'Hola' });
@@ -50,8 +55,13 @@ describe('Translator (async and legacy methods)', () => {
       outputDir,
     };
     const translator = new Translator(config);
-    (translator as any).loadSourceFile = jest.fn(() => { throw new Error('fail'); });
-    const result = await translator.translateSourceToLanguage({ inputFile, outputDir, name: 'Test' }, 'es');
+    (translator as any).loadSourceFile = jest.fn(() => {
+      throw new Error('fail');
+    });
+    const result = await translator.translateSourceToLanguage(
+      { inputFile, outputDir, name: 'Test' },
+      'es',
+    );
     expect(result.success).toBe(false);
     expect(result.error).toBe('fail');
   });
@@ -64,13 +74,20 @@ describe('Translator (async and legacy methods)', () => {
       outputDir,
     };
     const translator = new Translator(config);
-    (translator as any).getSources = jest.fn(() => [{ inputFile, outputDir, name: 'Test' }]);
-    (translator as any).translateSource = jest.fn(() => Promise.resolve([
-      { language: 'es', translations: {}, success: true },
-      { language: 'fr', translations: {}, success: false, error: 'fail' },
-    ]));
+    (translator as any).getSources = jest.fn(() => [
+      { inputFile, outputDir, name: 'Test' },
+    ]);
+    (translator as any).translateSource = jest.fn(() =>
+      Promise.resolve([
+        { language: 'es', translations: {}, success: true },
+        { language: 'fr', translations: {}, success: false, error: 'fail' },
+      ]),
+    );
     (translator as any).lingvaService.flushCache = jest.fn();
-    (translator as any).lingvaService.getCacheStats = jest.fn(() => ({ size: 1, enabled: true }));
+    (translator as any).lingvaService.getCacheStats = jest.fn(() => ({
+      size: 1,
+      enabled: true,
+    }));
     const summary = await translator.translateAll();
     expect(summary.successCount).toBe(1);
     expect(summary.failCount).toBe(1);
@@ -86,13 +103,25 @@ describe('Translator (async and legacy methods)', () => {
       outputDir,
     };
     const translator = new Translator(config);
-    (translator as any).getSources = jest.fn(() => [{ inputFile, outputDir, name: 'Test' }]);
-    (translator as any).lingvaService.translateObject = jest.fn().mockResolvedValue({ HELLO: 'Hola' });
+    (translator as any).getSources = jest.fn(() => [
+      { inputFile, outputDir, name: 'Test' },
+    ]);
+    (translator as any).lingvaService.translateObject = jest
+      .fn()
+      .mockResolvedValue({ HELLO: 'Hola' });
     (translator as any).saveTranslation = jest.fn();
-    const result = await translator.translateToLanguage({ HELLO: 'Hello' }, 'es');
+    const result = await translator.translateToLanguage(
+      { HELLO: 'Hello' },
+      'es',
+    );
     expect(result.success).toBe(true);
-    (translator as any).lingvaService.translateObject = jest.fn(() => { throw new Error('fail'); });
-    const failResult = await translator.translateToLanguage({ HELLO: 'Hello' }, 'es');
+    (translator as any).lingvaService.translateObject = jest.fn(() => {
+      throw new Error('fail');
+    });
+    const failResult = await translator.translateToLanguage(
+      { HELLO: 'Hello' },
+      'es',
+    );
     expect(failResult.success).toBe(false);
     expect(failResult.error).toBe('fail');
   });

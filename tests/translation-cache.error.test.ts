@@ -1,5 +1,3 @@
-
-
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -30,7 +28,21 @@ describe('TranslationCache (error and edge cases)', () => {
       fs.mkdirSync(testCacheDir, { recursive: true });
     }
     const cacheFile = path.join(testCacheDir, 'translations.json');
-    fs.writeFileSync(cacheFile, JSON.stringify({ version: '0.0', entries: { foo: { sourceText: 'a', translatedText: 'b', sourceLang: 'en', targetLang: 'es', timestamp: Date.now() } } }));
+    fs.writeFileSync(
+      cacheFile,
+      JSON.stringify({
+        version: '0.0',
+        entries: {
+          foo: {
+            sourceText: 'a',
+            translatedText: 'b',
+            sourceLang: 'en',
+            targetLang: 'es',
+            timestamp: Date.now(),
+          },
+        },
+      }),
+    );
     const cache = new TranslationCache(testCacheDir, true);
     expect(cache.getStats().size).toBe(0);
   });
@@ -55,9 +67,13 @@ describe('TranslationCache (saveCache error handling)', () => {
   it('should not throw if saveCache fails', () => {
     jest.doMock('fs', () => ({
       ...jest.requireActual('fs'),
-      writeFileSync: jest.fn(() => { throw new Error('fail'); }),
+      writeFileSync: jest.fn(() => {
+        throw new Error('fail');
+      }),
     }));
-    const { TranslationCache: MockedCache } = require('../src/translation-cache');
+    const {
+      TranslationCache: MockedCache,
+    } = require('../src/translation-cache');
     const cache = new MockedCache(testCacheDir, true);
     expect(() => cache.flush()).not.toThrow();
   });

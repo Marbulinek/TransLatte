@@ -19,7 +19,6 @@ Or globally:
 npm install -g @marbulinek/translatte
 ```
 
-
 ## Usage
 
 1. Run `npx translatte init` and edit the generated config file.

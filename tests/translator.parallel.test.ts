@@ -33,10 +33,16 @@ describe('Translator (parallel and delay logic)', () => {
     };
     const translator = new Translator(config);
     // Mock delayedTranslation to instantly resolve
-    (translator as any).delayedTranslation = jest.fn((source, lang) => Promise.resolve({ language: lang, translations: {}, success: true }));
-    const results = await translator.translateSource({ inputFile, outputDir, name: 'Test' });
+    (translator as any).delayedTranslation = jest.fn((source, lang) =>
+      Promise.resolve({ language: lang, translations: {}, success: true }),
+    );
+    const results = await translator.translateSource({
+      inputFile,
+      outputDir,
+      name: 'Test',
+    });
     expect(results.length).toBe(3);
-    expect(results.every(r => r.success)).toBe(true);
+    expect(results.every((r) => r.success)).toBe(true);
   });
 
   it('delayedTranslation waits for delay', async () => {
@@ -49,7 +55,11 @@ describe('Translator (parallel and delay logic)', () => {
     const translator = new Translator(config);
     const start = Date.now();
     // Use real implementation
-    const result = await (translator as any).delayedTranslation({ inputFile, outputDir, name: 'Test' }, 'es', 100);
+    const result = await (translator as any).delayedTranslation(
+      { inputFile, outputDir, name: 'Test' },
+      'es',
+      100,
+    );
     const elapsed = Date.now() - start;
     expect(result).toBeDefined();
     expect(elapsed).toBeGreaterThanOrEqual(90); // allow some timing slack

@@ -35,7 +35,9 @@ describe('Translator (error and edge cases)', () => {
       outputDir: testDir,
     };
     const translator = new Translator(config);
-    expect(() => (translator as any).loadSourceFile(config.inputFile!)).toThrow();
+    expect(() =>
+      (translator as any).loadSourceFile(config.inputFile!),
+    ).toThrow();
   });
 
   it('should throw if source file is invalid JSON', () => {
@@ -60,7 +62,9 @@ describe('Translator (error and edge cases)', () => {
     };
     fs.writeFileSync(config.inputFile!, JSON.stringify({ HELLO: 'Hello' }));
     const translator = new Translator(config);
-    (translator as any).saveTranslation(config.outputDir!, 'es', { HELLO: 'Hola' });
+    (translator as any).saveTranslation(config.outputDir!, 'es', {
+      HELLO: 'Hola',
+    });
     expect(fs.existsSync(config.outputDir!)).toBe(true);
     expect(fs.existsSync(path.join(config.outputDir!, 'es.json'))).toBe(true);
   });

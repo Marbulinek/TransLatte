@@ -1,5 +1,7 @@
 # TransLatté v1.1.0 - Multi-Module Support Added! 🎉
+
 ## What's New
+
 TransLatté now supports **multiple translation sources** in a single configuration! Perfect for modular Angular applications where each feature module has its own translation files.
 
 ## New Features
