@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@marbulinek/translatte.svg)](https://www.npmjs.com/package/@marbulinek/translatte)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/node/v/translatte.svg)](https://nodejs.org)
+[![Node.js Version](https://img.shields.io/badge/node-22.x-brightgreen)](https://nodejs.org)
 
 TransLatté is a powerful CLI tool that automatically generates translation JSON files for web applications using the free Lingva translation API. Works with **Angular** (`@ngx-translate`), **React** (`react-i18next`), **Vue** (`vue-i18n`), and any JavaScript/TypeScript project using JSON-based translations.
 
