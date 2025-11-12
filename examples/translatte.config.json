@@ -1,11 +1,6 @@
 {
   "sourceLanguage": "en",
-  "targetLanguages": [
-    "es",
-    "fr",
-    "de",
-    "it"
-  ],
+  "targetLanguages": ["es", "fr", "de", "it"],
   "delay": 500,
   "sources": [
     {

@@ -1,4 +1,8 @@
-import { TranslatteConfig, TranslationSource, TranslationResult } from '../src/types';
+import {
+  TranslatteConfig,
+  TranslationSource,
+  TranslationResult,
+} from '../src/types';
 
 describe('Type Definitions', () => {
   describe('TranslatteConfig', () => {
@@ -7,9 +11,9 @@ describe('Type Definitions', () => {
         sourceLanguage: 'en',
         targetLanguages: ['es', 'fr'],
         inputFile: './src/i18n/en.json',
-        outputDir: './src/i18n'
+        outputDir: './src/i18n',
       };
-      
+
       expect(config.sourceLanguage).toBe('en');
       expect(config.targetLanguages).toHaveLength(2);
     });
@@ -22,11 +26,11 @@ describe('Type Definitions', () => {
           {
             name: 'Core',
             inputFile: './core/en.json',
-            outputDir: './core'
-          }
-        ]
+            outputDir: './core',
+          },
+        ],
       };
-      
+
       expect(config.sources).toBeDefined();
       expect(config.sources).toHaveLength(1);
     });
@@ -37,9 +41,9 @@ describe('Type Definitions', () => {
         targetLanguages: ['es'],
         inputFile: './en.json',
         outputDir: './',
-        lingvaInstance: 'https://custom-lingva.com/api/v1'
+        lingvaInstance: 'https://custom-lingva.com/api/v1',
       };
-      
+
       expect(config.lingvaInstance).toBe('https://custom-lingva.com/api/v1');
     });
 
@@ -49,9 +53,9 @@ describe('Type Definitions', () => {
         targetLanguages: ['es'],
         inputFile: './en.json',
         outputDir: './',
-        preserveInterpolation: false
+        preserveInterpolation: false,
       };
-      
+
       expect(config.preserveInterpolation).toBe(false);
     });
 
@@ -61,9 +65,9 @@ describe('Type Definitions', () => {
         targetLanguages: ['es'],
         inputFile: './en.json',
         outputDir: './',
-        interpolationPattern: '\\[\\[[^\\]]+\\]\\]'
+        interpolationPattern: '\\[\\[[^\\]]+\\]\\]',
       };
-      
+
       expect(config.interpolationPattern).toBe('\\[\\[[^\\]]+\\]\\]');
     });
   });
@@ -73,9 +77,9 @@ describe('Type Definitions', () => {
       const source: TranslationSource = {
         name: 'Core Module',
         inputFile: './core/en.json',
-        outputDir: './core'
+        outputDir: './core',
       };
-      
+
       expect(source.name).toBe('Core Module');
       expect(source.inputFile).toBe('./core/en.json');
     });
@@ -83,9 +87,9 @@ describe('Type Definitions', () => {
     it('should define translation source without name', () => {
       const source: TranslationSource = {
         inputFile: './en.json',
-        outputDir: './'
+        outputDir: './',
       };
-      
+
       expect(source.name).toBeUndefined();
     });
   });
@@ -95,9 +99,9 @@ describe('Type Definitions', () => {
       const result: TranslationResult = {
         language: 'es',
         translations: { HELLO: 'Hola' },
-        success: true
+        success: true,
       };
-      
+
       expect(result.success).toBe(true);
       expect(result.error).toBeUndefined();
     });
@@ -107,9 +111,9 @@ describe('Type Definitions', () => {
         language: 'es',
         translations: {},
         success: false,
-        error: 'Translation failed'
+        error: 'Translation failed',
       };
-      
+
       expect(result.success).toBe(false);
       expect(result.error).toBe('Translation failed');
     });
@@ -119,9 +123,9 @@ describe('Type Definitions', () => {
         language: 'es',
         translations: { HELLO: 'Hola' },
         success: true,
-        sourceName: 'Core Module'
+        sourceName: 'Core Module',
       };
-      
+
       expect(result.sourceName).toBe('Core Module');
     });
   });
