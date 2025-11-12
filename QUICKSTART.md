@@ -212,7 +212,3 @@ No configuration needed - it just works! ⚡
 - 📝 Check [EXAMPLES.md](./EXAMPLES.md) for more use cases
 - 🐛 Report issues on GitHub
 - ⭐ Star the project if you find it useful!
-
----
-
-Made with ☕ and ❤️
