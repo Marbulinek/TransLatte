@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ master, main, develop ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ master, main, develop ]
+    branches: [ master, main ]
 
 jobs:
   build-and-test:
@@ -12,7 +12,7 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
+        node-version: [16.x, 18.x, 20.x, 22.x]
     
     steps:
     - name: Checkout code
@@ -48,7 +48,7 @@ jobs:
         fi
         echo "Build successful: All artifacts present"
 
-  version-and-publish:
+  auto-version:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
@@ -64,7 +64,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
-        registry-url: 'https://registry.npmjs.org'
     
     - name: Configure Git
       run: |
@@ -84,9 +83,9 @@ jobs:
         LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
         
         # Check if last commit was a version bump (to avoid duplicate bumps)
-        if [[ "$LAST_COMMIT_MSG" == *"chore(release):"* ]]; then
+        if [[ "$LAST_COMMIT_MSG" == *"chore(release):"* ]] || [[ "$LAST_COMMIT_MSG" == *"[skip ci]"* ]]; then
           echo "skip=true" >> $GITHUB_OUTPUT
-          echo "Last commit was a version bump, skipping..."
+          echo "Last commit was a version bump or skip ci, skipping..."
         else
           echo "skip=false" >> $GITHUB_OUTPUT
           echo "Version bump needed for version $CURRENT_VERSION"
@@ -119,9 +118,3 @@ jobs:
       run: |
         git push origin ${{ github.ref_name }}
         git push --tags
-    
-    - name: Publish to npm
-      if: steps.check_version.outputs.skip == 'false'
-      run: npm publish --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
