@@ -5,7 +5,7 @@ import * as path from 'path';
 
 describe('Translator', () => {
   const testDir = path.join(__dirname, 'test-translations');
-  
+
   beforeEach(() => {
     // Create test directory
     if (!fs.existsSync(testDir)) {
@@ -26,9 +26,9 @@ describe('Translator', () => {
         sourceLanguage: 'en',
         targetLanguages: ['es'],
         inputFile: path.join(testDir, 'en.json'),
-        outputDir: testDir
+        outputDir: testDir,
       };
-      
+
       const translator = new Translator(config);
       expect(translator).toBeDefined();
     });
@@ -41,16 +41,16 @@ describe('Translator', () => {
           {
             name: 'Core',
             inputFile: path.join(testDir, 'core/en.json'),
-            outputDir: path.join(testDir, 'core')
+            outputDir: path.join(testDir, 'core'),
           },
           {
             name: 'Auth',
             inputFile: path.join(testDir, 'auth/en.json'),
-            outputDir: path.join(testDir, 'auth')
-          }
-        ]
+            outputDir: path.join(testDir, 'auth'),
+          },
+        ],
       };
-      
+
       const translator = new Translator(config);
       expect(translator).toBeDefined();
     });
@@ -60,9 +60,9 @@ describe('Translator', () => {
         sourceLanguage: 'en',
         targetLanguages: ['es'],
         inputFile: path.join(testDir, 'en.json'),
-        outputDir: testDir
+        outputDir: testDir,
       };
-      
+
       // Should use single source as fallback
       const translator = new Translator(config);
       expect(translator).toBeDefined();
@@ -74,12 +74,12 @@ describe('Translator', () => {
       const sourceFile = path.join(testDir, 'en.json');
       const sourceContent = {
         HELLO: 'Hello',
-        WORLD: 'World'
+        WORLD: 'World',
       };
-      
+
       fs.writeFileSync(sourceFile, JSON.stringify(sourceContent, null, 2));
       expect(fs.existsSync(sourceFile)).toBe(true);
-      
+
       const loaded = JSON.parse(fs.readFileSync(sourceFile, 'utf-8'));
       expect(loaded).toEqual(sourceContent);
     });
@@ -91,9 +91,9 @@ describe('Translator', () => {
         sourceLanguage: 'en',
         targetLanguages: ['es', 'fr'],
         inputFile: './src/i18n/en.json',
-        outputDir: './src/i18n'
+        outputDir: './src/i18n',
       };
-      
+
       const translator = new Translator(config);
       expect(translator).toBeDefined();
     });
@@ -106,11 +106,11 @@ describe('Translator', () => {
           {
             name: 'Main',
             inputFile: './src/i18n/en.json',
-            outputDir: './src/i18n'
-          }
-        ]
+            outputDir: './src/i18n',
+          },
+        ],
       };
-      
+
       const translator = new Translator(config);
       expect(translator).toBeDefined();
     });
@@ -122,9 +122,9 @@ describe('Translator', () => {
         sourceLanguage: 'en',
         targetLanguages: ['es', 'fr', 'de', 'it'],
         inputFile: path.join(testDir, 'en.json'),
-        outputDir: testDir
+        outputDir: testDir,
       };
-      
+
       const translator = new Translator(config);
       expect(translator).toBeDefined();
     });

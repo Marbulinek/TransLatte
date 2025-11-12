@@ -12,34 +12,48 @@ export class LingvaService {
     baseUrl: string = 'https://lingva.ml/api/v1',
     preserveInterpolation: boolean = true,
     interpolationPattern?: string,
-    enableCache: boolean = true
+    enableCache: boolean = true,
   ) {
     this.baseUrl = baseUrl;
     this.preserveInterpolation = preserveInterpolation;
     this.cache = new TranslationCache(undefined, enableCache);
-    
+
     // Default pattern matches: {{var}}, {var}, %var%, $var$, ${var}
-    const defaultPattern = '\\{\\{[^}]+\\}\\}|\\{[^}]+\\}|%[^%]+%|\\$[^$]+\\$|\\$\\{[^}]+\\}';
-    this.interpolationPattern = new RegExp(interpolationPattern || defaultPattern, 'g');
+    const defaultPattern =
+      '\\{\\{[^}]+\\}\\}|\\{[^}]+\\}|%[^%]+%|\\$[^$]+\\$|\\$\\{[^}]+\\}';
+    this.interpolationPattern = new RegExp(
+      interpolationPattern || defaultPattern,
+      'g',
+    );
   }
 
   /**
    * Extract placeholders from text and replace with unique tokens
    */
-  private extractPlaceholders(text: string): { text: string; placeholders: Map<string, string> } {
+  private extractPlaceholders(text: string): {
+    text: string;
+    placeholders: Map<string, string>;
+  } {
     const placeholders = new Map<string, string>();
     let index = 0;
-    
-    const processedText = text.replace(this.interpolationPattern, (match, offset) => {
-      // Preserve surrounding spaces
-      const beforeSpace = offset > 0 && text[offset - 1] === ' ' ? '' : '';
-      const afterSpace = offset + match.length < text.length && text[offset + match.length] === ' ' ? '' : '';
-      
-      const token = `__PLCH${index}__`;
-      placeholders.set(token, match);
-      index++;
-      return beforeSpace + token + afterSpace;
-    });
+
+    const processedText = text.replace(
+      this.interpolationPattern,
+      (match, offset) => {
+        // Preserve surrounding spaces
+        const beforeSpace = offset > 0 && text[offset - 1] === ' ' ? '' : '';
+        const afterSpace =
+          offset + match.length < text.length &&
+          text[offset + match.length] === ' '
+            ? ''
+            : '';
+
+        const token = `__PLCH${index}__`;
+        placeholders.set(token, match);
+        index++;
+        return beforeSpace + token + afterSpace;
+      },
+    );
 
     return { text: processedText, placeholders };
   }
@@ -47,7 +61,10 @@ export class LingvaService {
   /**
    * Restore placeholders in translated text
    */
-  private restorePlaceholders(text: string, placeholders: Map<string, string>): string {
+  private restorePlaceholders(
+    text: string,
+    placeholders: Map<string, string>,
+  ): string {
     let result = text;
     placeholders.forEach((original, token) => {
       // Replace the token with the original placeholder
@@ -61,7 +78,11 @@ export class LingvaService {
   /**
    * Translate a single text from source to target language
    */
-  async translate(text: string, sourceLang: string, targetLang: string): Promise<string> {
+  async translate(
+    text: string,
+    sourceLang: string,
+    targetLang: string,
+  ): Promise<string> {
     try {
       // Check cache first
       const cachedTranslation = this.cache.get(text, sourceLang, targetLang);
@@ -86,28 +107,33 @@ export class LingvaService {
       const response = await axios.get(url, {
         timeout: 10000,
         headers: {
-          'User-Agent': 'TransLatte/1.1.0'
-        }
+          'User-Agent': 'TransLatte/1.1.0',
+        },
       });
 
       if (response.data && response.data.translation) {
         let translatedText = response.data.translation;
-        
+
         // Restore placeholders if they were extracted
         if (this.preserveInterpolation && placeholders.size > 0) {
-          translatedText = this.restorePlaceholders(translatedText, placeholders);
+          translatedText = this.restorePlaceholders(
+            translatedText,
+            placeholders,
+          );
         }
-        
+
         // Store in cache
         this.cache.set(text, translatedText, sourceLang, targetLang);
-        
+
         return translatedText;
       }
 
       throw new Error('Invalid response from Lingva API');
     } catch (error: any) {
       if (error.response) {
-        throw new Error(`Translation failed: ${error.response.status} - ${error.response.statusText}`);
+        throw new Error(
+          `Translation failed: ${error.response.status} - ${error.response.statusText}`,
+        );
       } else if (error.request) {
         throw new Error('Translation failed: No response from server');
       } else {
@@ -122,7 +148,7 @@ export class LingvaService {
   async translateObject(
     obj: Record<string, any>,
     sourceLang: string,
-    targetLang: string
+    targetLang: string,
   ): Promise<Record<string, any>> {
     const result: Record<string, any> = {};
 
@@ -132,7 +158,11 @@ export class LingvaService {
         result[key] = await this.translate(value, sourceLang, targetLang);
         // Add delay to avoid rate limiting
         await this.sleep(this.DELAY_MS);
-      } else if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      } else if (
+        typeof value === 'object' &&
+        value !== null &&
+        !Array.isArray(value)
+      ) {
         // Recursively translate nested objects
         result[key] = await this.translateObject(value, sourceLang, targetLang);
       } else {
@@ -148,7 +178,7 @@ export class LingvaService {
    * Sleep for specified milliseconds
    */
   private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   /**

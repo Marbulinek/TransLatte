@@ -25,17 +25,17 @@ export class TranslationCache {
   constructor(cacheDir?: string, enabled: boolean = true) {
     this.enabled = enabled;
     const dir = cacheDir || path.join(process.cwd(), this.CACHE_DIR);
-    
+
     if (this.enabled) {
       // Create cache directory if it doesn't exist
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
     }
-    
+
     this.cacheFile = path.join(dir, 'translations.json');
     this.cache = new Map();
-    
+
     if (this.enabled) {
       this.loadCache();
     }
@@ -44,7 +44,11 @@ export class TranslationCache {
   /**
    * Generate a unique cache key for a translation
    */
-  private generateKey(text: string, sourceLang: string, targetLang: string): string {
+  private generateKey(
+    text: string,
+    sourceLang: string,
+    targetLang: string,
+  ): string {
     const data = `${text}|${sourceLang}|${targetLang}`;
     return crypto.createHash('md5').update(data).digest('hex');
   }
@@ -59,7 +63,7 @@ export class TranslationCache {
       if (fs.existsSync(this.cacheFile)) {
         const data = fs.readFileSync(this.cacheFile, 'utf-8');
         const cacheData: CacheData = JSON.parse(data);
-        
+
         // Verify cache version
         if (cacheData.version === this.CACHE_VERSION) {
           Object.entries(cacheData.entries).forEach(([key, entry]) => {
@@ -70,7 +74,7 @@ export class TranslationCache {
           this.clearCache();
         }
       }
-    } catch (error) {
+    } catch {
       // If cache is corrupted, start fresh
       this.cache.clear();
     }
@@ -85,11 +89,15 @@ export class TranslationCache {
     try {
       const cacheData: CacheData = {
         version: this.CACHE_VERSION,
-        entries: Object.fromEntries(this.cache)
+        entries: Object.fromEntries(this.cache),
       };
-      
-      fs.writeFileSync(this.cacheFile, JSON.stringify(cacheData, null, 2), 'utf-8');
-    } catch (error) {
+
+      fs.writeFileSync(
+        this.cacheFile,
+        JSON.stringify(cacheData, null, 2),
+        'utf-8',
+      );
+    } catch {
       // Silently fail if we can't save cache
       console.warn('Warning: Failed to save translation cache');
     }
@@ -103,18 +111,23 @@ export class TranslationCache {
 
     const key = this.generateKey(text, sourceLang, targetLang);
     const entry = this.cache.get(key);
-    
+
     if (entry) {
       return entry.translatedText;
     }
-    
+
     return null;
   }
 
   /**
    * Store a translation in cache
    */
-  set(text: string, translatedText: string, sourceLang: string, targetLang: string): void {
+  set(
+    text: string,
+    translatedText: string,
+    sourceLang: string,
+    targetLang: string,
+  ): void {
     if (!this.enabled) return;
 
     const key = this.generateKey(text, sourceLang, targetLang);
@@ -123,9 +136,9 @@ export class TranslationCache {
       translatedText,
       sourceLang,
       targetLang,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
-    
+
     this.cache.set(key, entry);
   }
 
@@ -151,7 +164,7 @@ export class TranslationCache {
    */
   clearCache(): void {
     this.cache.clear();
-    
+
     if (this.enabled && fs.existsSync(this.cacheFile)) {
       fs.unlinkSync(this.cacheFile);
     }
@@ -163,7 +176,7 @@ export class TranslationCache {
   getStats(): { size: number; enabled: boolean } {
     return {
       size: this.cache.size,
-      enabled: this.enabled
+      enabled: this.enabled,
     };
   }
 

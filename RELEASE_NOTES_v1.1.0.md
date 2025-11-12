@@ -1,7 +1,5 @@
 # TransLatté v1.1.0 - Multi-Module Support Added! 🎉
-
 ## What's New
-
 TransLatté now supports **multiple translation sources** in a single configuration! Perfect for modular Angular applications where each feature module has its own translation files.
 
 ## New Features
@@ -64,21 +62,25 @@ The CLI now groups results by source module:
 ## Benefits
 
 ### ✨ Better Organization
+
 - Keep translations close to their feature modules
 - Clear separation of concerns
 - Easier to maintain
 
 ### 📦 Modular Architecture
+
 - Perfect for lazy-loaded modules
 - Each module can have its own translations
 - Reduces bundle size
 
 ### 👥 Team Collaboration
+
 - Different teams can work on different modules
 - Reduces merge conflicts
 - Clear ownership
 
 ### 🚀 Scalability
+
 - Easy to add new modules
 - No giant translation files
 - Flexible structure
@@ -135,21 +137,25 @@ Simply update your `translatte.config.json`:
 ## Example Use Cases
 
 ### 1. Feature Modules
+
 ```
 Core + Auth + Dashboard + Products + Admin
 ```
 
 ### 2. Monorepo Applications
+
 ```
 Admin App + Customer App + Shared Library
 ```
 
 ### 3. Micro-Frontends
+
 ```
 Shell + Feature1 + Feature2 + Feature3
 ```
 
 ### 4. White-Label Applications
+
 ```
 Core + Theme1 + Theme2 + Theme3
 ```
@@ -163,6 +169,7 @@ Core + Theme1 + Theme2 + Theme3
 ## Testing
 
 The feature has been tested with:
+
 - ✅ Single source (backward compatibility)
 - ✅ Multiple sources (new feature)
 - ✅ 3 modules × 2 languages = 6 files generated
@@ -172,6 +179,7 @@ The feature has been tested with:
 ## What's Next
 
 Future enhancements planned:
+
 - Translation caching system
 - Incremental translations (only changed keys)
 - Parallel processing for faster translations
@@ -196,25 +204,29 @@ Your existing configuration will continue to work. To use multi-module features:
 ## Files Changed
 
 ### Source Code
+
 - ✅ `src/types.ts` - Added TranslationSource, TranslationSummary types
 - ✅ `src/translator.ts` - Added multi-source support
 - ✅ `src/cli.ts` - Enhanced output and init command
 
 ### Documentation
+
 - ✅ `README.md` - Added multi-module section
 - ✅ `MULTI_MODULE_GUIDE.md` - New comprehensive guide
 - ✅ `EXAMPLES.md` - Added multi-module example
 - ✅ `CHANGELOG.md` - Updated with v1.1.0 changes
 
 ### Examples
+
 - ✅ `examples/modules/` - Created example module structure
 - ✅ `translatte.multi-module.config.json` - Example configuration
 
 ## Thank You!
 
-This feature was created based on user feedback for better support of modular Angular applications. 
+This feature was created based on user feedback for better support of modular Angular applications.
 
 If you find TransLatté useful, please:
+
 - ⭐ Star the project on GitHub
 - 📢 Share with your team
 - 🐛 Report issues
