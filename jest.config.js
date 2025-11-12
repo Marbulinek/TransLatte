@@ -15,4 +15,5 @@ module.exports = {
   coverageReporters: ['text', 'lcov', 'html'],
   moduleFileExtensions: ['ts', 'js', 'json'],
   verbose: true,
+  maxWorkers: '50%', // Explicitly set to avoid availableParallelism issues in older Node versions
 };
