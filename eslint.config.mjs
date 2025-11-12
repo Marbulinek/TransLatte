@@ -1,22 +1,20 @@
-import { defineConfig } from 'eslint/config';
 import js from '@eslint/js';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
+import globals from 'globals';
 
-export default defineConfig([
+export default [
+  js.configs.recommended,
   {
     files: ['**/*.js'],
     ignores: ['dist/**', 'node_modules/**', '.translatte-cache/**'],
-    plugins: { js },
-    extends: ['js/recommended'],
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: 'module',
-    },
-    env: {
-      es2021: true,
-      node: true,
-      jest: true,
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
     },
   },
   {
@@ -28,6 +26,10 @@ export default defineConfig([
         ecmaVersion: 2021,
         sourceType: 'module',
       },
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
     },
     plugins: {
       '@typescript-eslint': tseslint,
@@ -38,4 +40,4 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-]);
+];
