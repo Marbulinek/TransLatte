@@ -18,7 +18,7 @@ TransLatté is a powerful CLI tool that automatically generates translation JSON
 ## ✨ Features
 
 - 🚀 **Automatic Translation**: Generate translation files in multiple languages from a single source file
-- 📦 **Multi-Module Support**: Handle multiple translation sources for modular Angular apps
+- 📦 **Multi-Module Support**: Handle multiple translation sources for modular apps
 - 🔤 **Placeholder Preservation**: Automatically preserves `{{variables}}`, `{placeholders}`, and other interpolation formats (NEW!)
 - 🌍 **Multiple Languages**: Support for 100+ languages via Lingva API
 - 🔄 **Nested Objects**: Handles deeply nested translation structures
