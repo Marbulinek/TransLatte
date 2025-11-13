@@ -62,10 +62,7 @@ For a single translation source:
   "sourceLanguage": "en",
   "targetLanguages": ["es", "fr", "de", "it", "pt", "ja", "zh"],
   "inputFile": "./src/assets/i18n/en.json",
-  "outputDir": "./src/assets/i18n",
-  "lingvaInstance": "https://lingva.ml/api/v1",
-  "preserveInterpolation": true,
-  "interpolationPattern": "\\{\\{[^}]+\\}\\}|\\{[^}]+\\}|%[^%]+%|\\$[^$]+\\$|\\$\\{[^}]+\\}"
+  "outputDir": "./src/assets/i18n"
 }
 ```
 
@@ -76,9 +73,9 @@ For a single translation source:
 - `inputFile`: Path to your source translation file
 - `outputDir`: Directory where translated files will be created
 - `lingvaInstance`: (Optional) Custom Lingva instance URL
-- `preserveInterpolation`: (Optional) Keep interpolation placeholders untranslated
+- `preserveInterpolation`: (Optional) Keep interpolation placeholders untranslated (default: true)
 - `interpolationPattern`: (Optional) Regex pattern to match placeholders
-- `delay`: (Optional) Delay in milliseconds between translation requests
+- `enableCache`: (Optional) Enable translation caching for faster re-runs (default: true)
 
 ### Multi-Module Configuration
 
@@ -88,7 +85,6 @@ For modular applications (Angular feature modules, React code-splitting, etc.):
 {
   "sourceLanguage": "en",
   "targetLanguages": ["es", "fr", "de", "it"],
-  "delay": 500,
   "sources": [
     {
       "name": "Core Module",
