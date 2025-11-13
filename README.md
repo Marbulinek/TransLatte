@@ -49,14 +49,99 @@ Then run:
 npm run translate
 ```
 
-## More guides & advanced usage
+## Configuration
 
-See the [docs/](./docs/) folder for:
+TransLatté uses a `translatte.config.json` file for configuration. Run `npx translatte init` to create one.
 
-- Multi-module configuration
-- Placeholder/interpolation details
-- Examples and quickstart
-- Publishing and versioning
+### Basic Configuration
+
+For a single translation source:
+
+```json
+{
+  "sourceLanguage": "en",
+  "targetLanguages": ["es", "fr", "de", "it", "pt", "ja", "zh"],
+  "inputFile": "./src/assets/i18n/en.json",
+  "outputDir": "./src/assets/i18n",
+  "lingvaInstance": "https://lingva.ml/api/v1",
+  "preserveInterpolation": true,
+  "interpolationPattern": "\\{\\{[^}]+\\}\\}|\\{[^}]+\\}|%[^%]+%|\\$[^$]+\\$|\\$\\{[^}]+\\}"
+}
+```
+
+**Configuration Options:**
+
+- `sourceLanguage`: The language code of your source translations (e.g., "en")
+- `targetLanguages`: Array of language codes to translate to
+- `inputFile`: Path to your source translation file
+- `outputDir`: Directory where translated files will be created
+- `lingvaInstance`: (Optional) Custom Lingva instance URL
+- `preserveInterpolation`: (Optional) Keep interpolation placeholders untranslated
+- `interpolationPattern`: (Optional) Regex pattern to match placeholders
+- `delay`: (Optional) Delay in milliseconds between translation requests
+
+### Multi-Module Configuration
+
+For modular applications (Angular feature modules, React code-splitting, etc.):
+
+```json
+{
+  "sourceLanguage": "en",
+  "targetLanguages": ["es", "fr", "de", "it"],
+  "delay": 500,
+  "sources": [
+    {
+      "name": "Core Module",
+      "inputFile": "./src/assets/i18n/en.json",
+      "outputDir": "./src/assets/i18n"
+    },
+    {
+      "name": "Auth Module",
+      "inputFile": "./src/app/auth/i18n/en.json",
+      "outputDir": "./src/app/auth/i18n"
+    },
+    {
+      "name": "Dashboard Module",
+      "inputFile": "./src/app/dashboard/i18n/en.json",
+      "outputDir": "./src/app/dashboard/i18n"
+    }
+  ]
+}
+```
+
+**Multi-Module Options:**
+
+- `sources`: Array of translation sources, each with:
+  - `name`: Descriptive name for the module
+  - `inputFile`: Path to the module's source translation file
+  - `outputDir`: Directory for the module's translated files
+
+### Placeholder/Interpolation Support
+
+TransLatté preserves common interpolation patterns used by popular i18n libraries:
+
+- Angular/ngx-translate: `{{ variable }}`
+- React-i18next: `{{variable}}`
+- Vue-i18n: `{variable}`
+- Custom patterns: `%variable%`, `${variable}`, `$variable$`
+
+**Example translation file with placeholders:**
+
+```json
+{
+  "GREETINGS": {
+    "HELLO": "Hello {{name}}!",
+    "WELCOME": "Welcome back, {username}",
+    "GOOD_MORNING": "Good morning, ${user}!"
+  },
+  "MESSAGES": {
+    "ITEMS_COUNT": "You have {count} items in your cart",
+    "PRICE": "Total price: {{currency}}{{amount}}"
+  }
+}
+```
+
+See the [examples/](./examples/) folder for more configuration examples and sample translation files.
 
 ## License
 
