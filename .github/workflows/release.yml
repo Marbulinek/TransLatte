@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: write # Allows push/tag/release
-  packages: write # For publishing to NPM registry (optional, depending on setup)
 
 jobs:
   release:
@@ -43,7 +42,7 @@ jobs:
       # changelog, Git commits, pushing, and creating the GitHub release.
       # It automatically uses the conventional commit spec to determine major/minor/patch.
       - name: ✨ Semantic Release & Publish
-        uses: cycjimmy/semantic-release-action@v4
+        uses: cycjimmy/semantic-release-action@61680d074e64f8f3020942484a0c8b02131349b1
         id: semantic
         with:
           # Configuration for semantic-release (installed as an npm package)
