@@ -38,7 +38,7 @@ Add to your `package.json`:
 ```json
 {
   "scripts": {
-    "translate": "translatte generate"
+    "translate": "npm run translatte generate"
   }
 }
 ```

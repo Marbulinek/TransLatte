@@ -5,7 +5,7 @@ export class LingvaService {
   private baseUrl: string;
   private preserveInterpolation: boolean;
   private interpolationPattern: RegExp;
-  private readonly DELAY_MS = 500; // Fixed internal delay between API calls
+  private readonly DELAY_MS = 2000; // Increased delay to 2000ms to respect API rate limits
   private cache: TranslationCache;
 
   constructor(

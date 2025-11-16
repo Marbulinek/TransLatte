@@ -122,8 +122,8 @@ export class Translator {
     source: TranslationSource,
   ): Promise<TranslationResult[]> {
     // Stagger the start of parallel translations to avoid rate limiting
-    // Fixed 500ms stagger interval for optimal API usage
-    const STAGGER_DELAY_MS = 500;
+    // Increased to 2000ms stagger interval for better API respect
+    const STAGGER_DELAY_MS = 2000;
     const translationPromises = this.config.targetLanguages.map(
       (targetLang, index) =>
         this.delayedTranslation(source, targetLang, index * STAGGER_DELAY_MS),
