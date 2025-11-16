@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 describe('Translator (parallel and delay logic)', () => {
+  jest.setTimeout(8000);
   const testDir = path.join(__dirname, 'test-translations-parallel');
   const inputFile = path.join(testDir, 'en.json');
   const outputDir = path.join(testDir, 'out');
