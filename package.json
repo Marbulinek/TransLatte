@@ -14,9 +14,7 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint 'src/**/*.{ts,js}' 'tests/**/*.{ts,js}' --max-warnings=0",
     "format": "prettier --check .",
-    "preversion": "npm test && npm run build",
-    "version": "git add -A",
-    "postversion": "git push && git push --tags"
+    "release": "semantic-release"
   },
   "keywords": [
     "translation",
