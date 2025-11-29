@@ -4,45 +4,27 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
+  packages: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔍 DEBUG — print token length & npm whoami
-        run: |
-          echo "Token length: ${#NPM_TOKEN}"
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          npm whoami || true
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-
       - name: ⬇️ Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: master
 
       - name: ⚙️ Setup Node.js (Node 22 for semantic-release)
         uses: actions/setup-node@v4
         with:
           node-version: '22.14.0'
-          registry-url: 'https://registry.npmjs.org/'
 
-      # ---------- Fix 1: Configure npm authentication ----------
-      # semantic-release/npm už síce vie používať OIDC,
-      # ale ak OIDC v tvojom účte ešte nie je aktívne,
-      # musíš mu pomôcť klasickým NPM_TOKEN.
-      - name: 🔐 Configure npm auth
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # ---------- Install, test, build ----------
+      # --- Build & Test ---
       - name: 📦 Install dependencies
         run: npm ci
 
@@ -52,15 +34,20 @@ jobs:
       - name: 🔨 Build
         run: npm run build
 
-      # ---------- Git author for committing changelog ----------
+      # --- Configure Git ---
       - name: 🪪 Configure Git author
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # ---------- Semantic-release ----------
+      # --- Authenticate npm using GitHub OIDC ---
+      - name: 🔑 Authenticate npm via OIDC
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$(gh auth token --hostname github.com)" > ~/.npmrc
+          echo "@${{ github.repository_owner }}:registry=https://npm.pkg.github.com" >> ~/.npmrc
+
+      # --- Semantic Release & Publish ---
       - name: ✨ Semantic Release & Publish
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
