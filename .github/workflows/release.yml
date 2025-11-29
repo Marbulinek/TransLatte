@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # Allows push/tag/release
+  contents: write
+  id-token: write
 
 jobs:
   release:
@@ -14,19 +15,25 @@ jobs:
       - name: ⬇️ Checkout code
         uses: actions/checkout@v4
         with:
-          # Deep fetch is often needed for git history-based actions
           fetch-depth: 0
-          # We'll rely on the default GITHUB_TOKEN for pushing, but must ensure
-          # the 'contents: write' permission is set globally (which it is above).
 
       - name: ⚙️ Setup Node.js (Node 22 for semantic-release)
         uses: actions/setup-node@v4
         with:
           node-version: '22.14.0'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://registry.npmjs.org/'
 
-      # --- Build & Test ---
+      # ---------- Fix 1: Configure npm authentication ----------
+      # semantic-release/npm už síce vie používať OIDC,
+      # ale ak OIDC v tvojom účte ešte nie je aktívne,
+      # musíš mu pomôcť klasickým NPM_TOKEN.
+      - name: 🔐 Configure npm auth
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # ---------- Install, test, build ----------
       - name: 📦 Install dependencies
         run: npm ci
 
@@ -36,18 +43,15 @@ jobs:
       - name: 🔨 Build
         run: npm run build
 
-      # --- Automated Release Steps ---
-
-      # 🔑 Run semantic-release directly to avoid action pin issues
+      # ---------- Git author for committing changelog ----------
       - name: 🪪 Configure Git author
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      # ---------- Semantic-release ----------
       - name: ✨ Semantic Release & Publish
         run: npx semantic-release
         env:
-          # IMPORTANT: Use GITHUB_TOKEN for committing/pushing/releasing
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # IMPORTANT: Use NPM_TOKEN for publishing to npm
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
