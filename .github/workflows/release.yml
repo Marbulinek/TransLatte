@@ -11,6 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 🔍 DEBUG — print token length & npm whoami
+        run: |
+          echo "Token length: ${#NPM_TOKEN}"
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          npm whoami || true
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
       - name: ⬇️ Checkout code
         uses: actions/checkout@v4
         with:
