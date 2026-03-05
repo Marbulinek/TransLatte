@@ -54,8 +54,15 @@ describe('Translator (parallel and delay logic)', () => {
       outputDir,
     };
     const translator = new Translator(config);
+    jest
+      .spyOn(translator as any, 'translateSourceToLanguage')
+      .mockResolvedValue({
+        language: 'es',
+        translations: {},
+        success: true,
+        sourceName: 'Test',
+      });
     const start = Date.now();
-    // Use real implementation
     const result = await (translator as any).delayedTranslation(
       { inputFile, outputDir, name: 'Test' },
       'es',
